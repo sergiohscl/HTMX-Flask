@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumir API com HTMX</title>
+    <script src="https://unpkg.com/htmx.org@1.7.0"></script>   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <button hx-get="/api/v1/actors/" hx-targer="#actors-list" hx-swap="innerHTML">Load Actors</button> 
+    <div id="actors-list">
+        {% for actor in actors %}
+        <div class="actor">
+            <h2>{{ actor.name }}</h2>
+            <p>{{ actor.birthday }}</p>
+            <p id="nacao">{{ actor.nationality }}</p>
+        </div>
+        {% endfor %}
+    </div>   
+</body>
+</html>
